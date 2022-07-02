@@ -47,8 +47,16 @@ public class Song {
     public class PlayMP3 {
         public static void playSong() {
 
-            String filename = "M1.mp3";
-            MP3Player mp3Player = new MP3Player(filename);
+
+            String t1 = "tracks/KhwabHoTumYa.mp3.mp3";
+            String t2 = "tracks/LikheJoKhatTujhe.mp3.mp3";
+            String t3 = "tracks/MainePuchaChandSe.mp3.mp3";
+            String t4 = "tracks/NeeleNeeleAmbarPar.mp3.mp3";
+            String t5 = "tracks/YeJoMohhabbatHai.mp3.mp3";
+
+//            if(jComboBox.getItemAt(jComboBox.getSelectedIndex()))
+
+            MP3Player mp3Player = new MP3Player(t1);
             mp3Player.play();
 
             Scanner sc = new Scanner(System.in);
@@ -75,7 +83,7 @@ public class Song {
                 FileInputStream fileInputStream = new FileInputStream(mp3FileToPlay);
                 BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
                 jlPlayer = new Player(bufferedInputStream);
-            } catch (Exception e) {
+            } catch(Exception e){
                 System.out.println("Problem playing mp3 file " + mp3FileToPlay);
                 System.out.println(e.getMessage());
             }
