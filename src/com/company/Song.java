@@ -11,13 +11,15 @@ import java.util.Scanner;
 
 public class Song {
 
+    static String[] optionsToChoose = {"KhwabHoTumYa", "LikheJoKhatTujhe", "MainePuchaChandSe", "NeeleNeeleAmbarPar", "YeJoMohhabbatHai"};
+    static JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose);
+
+
     public static void chooseSong() {
-        String[] optionsToChoose = {"Apple", "Orange", "Banana", "Pineapple", "None of the listed"};
 
         JFrame jFrame = new JFrame("Choose a song!");
 
 
-        JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose);
         jComboBox.setBounds(80, 50, 140, 20);
 
         JButton jButton = new JButton("Done");
@@ -37,8 +39,10 @@ public class Song {
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String selectedFruit = "Playing " + jComboBox.getItemAt(jComboBox.getSelectedIndex())+" !";
+                String a = jComboBox.getItemAt(jComboBox.getSelectedIndex());
+                String selectedFruit = "Playing " + a +" !";
                 jLabel.setText(selectedFruit);
+                PlayMP3.playSong();
             }
         });
 
@@ -47,16 +51,32 @@ public class Song {
     public class PlayMP3 {
         public static void playSong() {
 
+            String track = "";
 
-            String t1 = "tracks/KhwabHoTumYa.mp3.mp3";
-            String t2 = "tracks/LikheJoKhatTujhe.mp3.mp3";
-            String t3 = "tracks/MainePuchaChandSe.mp3.mp3";
-            String t4 = "tracks/NeeleNeeleAmbarPar.mp3.mp3";
-            String t5 = "tracks/YeJoMohhabbatHai.mp3.mp3";
+            String t1 = "KhwabHoTumYa";
+            String t2 = "LikheJoKhatTujhe";
+            String t3 = "MainePuchaChandSe";
+            String t4 = "NeeleNeeleAmbarPar";
+            String t5 = "YeJoMohhabbatHai";
 
-//            if(jComboBox.getItemAt(jComboBox.getSelectedIndex()))
+            if((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t1)){
+                track = "src/tracks/"+t1+".mp3";
+            }
+            else if((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t2)){
+                track = "src/tracks/"+t2+".mp3";
+            }
+            else if((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t3)){
+                track = "src/tracks/"+t3+".mp3";
+            }
+            else if((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t4)){
+                track = "src/tracks/"+t4+".mp3";
+            }
+            else if((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t5)){
+                track = "src/tracks/"+t5+".mp3";
+            }
 
-            MP3Player mp3Player = new MP3Player(t1);
+
+            MP3Player mp3Player = new MP3Player(track);
             mp3Player.play();
 
             Scanner sc = new Scanner(System.in);
