@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+import static com.company.Song.chooseFrame;
+
 public class MusicPlayer implements ActionListener {
 
     //Stopping thread
@@ -36,6 +38,8 @@ public class MusicPlayer implements ActionListener {
 
     //Creating buttons
     JButton play, pause, resume, stop;
+    JButton queueB = new JButton("QUEUE!");
+
 
     //Creating FileChooser for choosing the music mp3 file
     JFileChooser fileChooser;
@@ -98,6 +102,7 @@ public class MusicPlayer implements ActionListener {
         controlPanel.add(pause);
         controlPanel.add(resume);
         controlPanel.add(stop);
+        controlPanel.add(queueB);
 
         //Setting buttons background color
         play.setBackground(Color.WHITE);
@@ -117,7 +122,7 @@ public class MusicPlayer implements ActionListener {
 
         //Setting Frame background color
         frame.setBackground(Color.white);
-        frame.setSize(400, 200);
+        frame.setSize(500, 250);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,6 +136,14 @@ public class MusicPlayer implements ActionListener {
         pause.addActionListener(this);
         resume.addActionListener(this);
         stop.addActionListener(this);
+        queueB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                frame.dispose();
+                Song.PlayMP3.addToQueueFrame();
+            }
+        });
     }
 
     @Override
@@ -201,7 +214,8 @@ public class MusicPlayer implements ActionListener {
                 player = new Player(bufferedInputStream);
                 totalLength = fileInputStream.available();
                 player.play();//starting music
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
