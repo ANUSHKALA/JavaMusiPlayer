@@ -110,7 +110,7 @@ public class MusicPlayer implements ActionListener {
         frame = new JFrame();
 
         //Setting Frame's Title
-        frame.setTitle("DataFlair's Music Player");
+        frame.setTitle("Music Player");
 
         //Adding panels in Frame
         frame.add(playerPanel, BorderLayout.NORTH);
@@ -137,7 +137,7 @@ public class MusicPlayer implements ActionListener {
             public void actionPerformed(ActionEvent e) {
 
                 frame.dispose();
-                Song.PlayMP3.addToQueueFrame();
+                Queue.addToQueueFrame();
             }
         });
     }

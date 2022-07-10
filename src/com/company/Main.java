@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class Main {
 
-    public static void Begin(String[] args){
+    public static void Begin(){
 
         JFrame frame = new JFrame("Music Player");
         frame.setVisible(true);
@@ -20,9 +20,7 @@ public class Main {
         frame.add(mPanel,BorderLayout.NORTH);
         frame.add(cPanel,BorderLayout.WEST);
         JLabel label1 = new JLabel("Welcome to the music player!");
-        JLabel label2 = new JLabel("What would you like to do: ");
         mPanel.add(label1);
-        cPanel.add(label2);
 
         JPanel bPanel = new JPanel();
         frame.add(bPanel);
@@ -35,11 +33,9 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                Song.chooseSong();
+                MusicPlayer.playChoice();
             }
         });
-
-
 
     }
 

@@ -1,5 +1,6 @@
 package com.company;
 
+import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.AudioDevice;
 import javazoom.jl.player.Player;
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -8,23 +9,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
-import static com.company.SongQueue.addToQueue;
-import static com.company.SongQueue.playQueue;
+import static com.company.MusicPlayer.playChoice;
+import static com.company.PlayingQueue.initUI;
+import static com.company.PlayingQueue.queueUI;
+import static com.company.SongQueue.*;
 //import static com.company.SongQueue.stop;
 
 public class Song {
 
     static JFrame chooseFrame;
-    static JFrame queueFrame;
     static String[] optionsToChoose = {"KhwabHoTumYa", "LikheJoKhatTujhe", "MainePuchaChandSe", "NeeleNeeleAmbarPar", "YeJoMohhabbatHai"};
     static JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose);
-    static JComboBox<String> queueSelMenu = new JComboBox<>(optionsToChoose);
-    static String selSong = "";
 //    static boolean playing = false;
 
     public static void chooseSong() {
@@ -55,7 +55,7 @@ public class Song {
             public void actionPerformed(ActionEvent e) {
 
                 chooseFrame.dispose();
-                PlayMP3.addToQueueFrame();
+                Queue.addToQueueFrame();
             }
         });
 
@@ -76,23 +76,19 @@ public class Song {
             if ((jComboBox.getSelectedItem().toString()).equals(t1)) {
                 track = "src/tracks/" + t1 + ".mp3";
                 System.out.println(track);
-            }
-            else if((jComboBox.getSelectedItem().toString()).equals(t2)) {
+            } else if ((jComboBox.getSelectedItem().toString()).equals(t2)) {
                 track = "src/tracks/" + t2 + ".mp3";
                 System.out.println(track);
 
-            }
-            else if((jComboBox.getSelectedItem().toString()).equals(t3)){
+            } else if ((jComboBox.getSelectedItem().toString()).equals(t3)) {
                 track = "src/tracks/" + t3 + ".mp3";
                 System.out.println(track);
 
-            }
-            else if((jComboBox.getSelectedItem().toString()).equals(t4)) {
+            } else if ((jComboBox.getSelectedItem().toString()).equals(t4)) {
                 track = "src/tracks/" + t4 + ".mp3";
                 System.out.println(track);
 
-            }
-            else if((jComboBox.getSelectedItem().toString()).equals(t5)) {
+            } else if ((jComboBox.getSelectedItem().toString()).equals(t5)) {
                 track = "src/tracks/" + t5 + ".mp3";
                 System.out.println(track);
 
@@ -102,56 +98,5 @@ public class Song {
         }
 
 
-        public static void addToQueueFrame() {
-            queueFrame = new JFrame("Music Player");
-            queueFrame.setVisible(true);
-            queueFrame.setSize(300, 200);
-            queueFrame.setLayout(new BorderLayout());
-            queueFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-            queueSelMenu.setBounds(80, 50, 140, 20);
-
-            queueFrame.add(queueSelMenu);
-
-            JPanel bPanel = new JPanel();
-            queueFrame.add(bPanel);
-            queueFrame.add(bPanel, BorderLayout.SOUTH);
-            JButton addB = new JButton("ADD");
-            addB.setBounds(55, 100, 200, 20);
-            JButton backB = new JButton("Go Back");
-            backB.setBounds(55, 150, 90, 10);
-            bPanel.add(addB);
-            bPanel.add(backB);
-
-            selSong = queueSelMenu.getItemAt(queueSelMenu.getSelectedIndex());
-
-            addB.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-//                    queueFrame.dispose();
-                    System.out.println(selSong);
-                    try {
-                        addToQueue(selSong);
-                        playQueue();
-
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-
-                }
-            });
-
-        }
-
-//        public static void addToQue(String x){
-//
-//
-//
-//        }
-
-
     }
-
 }

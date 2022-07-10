@@ -107,7 +107,7 @@ class LoginFrame extends JFrame implements ActionListener {
         }
 
         passBook.put("megha","megha");
-        passBook.put("aiswu","aiswu");
+        passBook.put("a","a");
         System.out.println(passBook);
 
         //Coding Part of LOGIN button
@@ -122,7 +122,7 @@ class LoginFrame extends JFrame implements ActionListener {
                 if(passBook.get(userText).equals(pwdText)){
                     System.out.println("success");
                     JOptionPane.showMessageDialog(this, "Login Successful");
-                    playChoice();
+                    Main.Begin();
                     LoginFrame.this.dispose();
                 }
 
@@ -158,9 +158,8 @@ class LoginFrame extends JFrame implements ActionListener {
 public class Login {
     public static void main(String[] a) throws FileNotFoundException {
 
-
         LoginFrame frame = new LoginFrame();
-        frame.setTitle("Login Form");
+        frame.setTitle("Music Player Login");
         frame.setVisible(true);
         frame.setBounds(10, 10, 370, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
