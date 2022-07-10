@@ -10,9 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Scanner;
 
 import static com.company.SongQueue.addToQueue;
+import static com.company.SongQueue.playQueue;
+//import static com.company.SongQueue.stop;
 
 public class Song {
 
@@ -21,7 +24,7 @@ public class Song {
     static String[] optionsToChoose = {"KhwabHoTumYa", "LikheJoKhatTujhe", "MainePuchaChandSe", "NeeleNeeleAmbarPar", "YeJoMohhabbatHai"};
     static JComboBox<String> jComboBox = new JComboBox<>(optionsToChoose);
     static JComboBox<String> queueSelMenu = new JComboBox<>(optionsToChoose);
-    static String selSong = queueSelMenu.getSelectedItem().toString();
+    static String selSong = "";
 //    static boolean playing = false;
 
     public static void chooseSong() {
@@ -70,22 +73,26 @@ public class Song {
             String t4 = "NeeleNeeleAmbarPar";
             String t5 = "YeJoMohhabbatHai";
 
-            if ((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t1)) {
+            if ((jComboBox.getSelectedItem().toString()).equals(t1)) {
                 track = "src/tracks/" + t1 + ".mp3";
                 System.out.println(track);
-            } else if ((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t2)) {
+            }
+            else if((jComboBox.getSelectedItem().toString()).equals(t2)) {
                 track = "src/tracks/" + t2 + ".mp3";
                 System.out.println(track);
 
-            } else if ((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t3)) {
+            }
+            else if((jComboBox.getSelectedItem().toString()).equals(t3)){
                 track = "src/tracks/" + t3 + ".mp3";
                 System.out.println(track);
 
-            } else if ((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t4)) {
+            }
+            else if((jComboBox.getSelectedItem().toString()).equals(t4)) {
                 track = "src/tracks/" + t4 + ".mp3";
                 System.out.println(track);
 
-            } else if ((jComboBox.getItemAt(jComboBox.getSelectedIndex())).equals(t5)) {
+            }
+            else if((jComboBox.getSelectedItem().toString()).equals(t5)) {
                 track = "src/tracks/" + t5 + ".mp3";
                 System.out.println(track);
 
@@ -117,13 +124,21 @@ public class Song {
             bPanel.add(addB);
             bPanel.add(backB);
 
+            selSong = queueSelMenu.getItemAt(queueSelMenu.getSelectedIndex());
+
             addB.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
 //                    queueFrame.dispose();
                     System.out.println(selSong);
-                    addToQueue(selSong);
+                    try {
+                        addToQueue(selSong);
+                        playQueue();
+
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
 
                 }
             });

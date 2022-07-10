@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.company;
 
 import javazoom.jl.player.Player;
@@ -167,8 +163,8 @@ public class MusicPlayer implements ActionListener {
                 if(started){
                     playThread.stop();
                 }
-                playThread.start();
                 started = true;
+                playThread.start();
                 songName.setText("Now playing : " + filename);
             } else {
                 songName.setText("No File was selected!");
@@ -237,7 +233,7 @@ public class MusicPlayer implements ActionListener {
         }
     };
 
-    public static void main(String[] args) {
+    public static void playChoice() {
         MusicPlayer mp = new MusicPlayer();
     }
 }

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void Begin(String[] args){
 
         JFrame frame = new JFrame("Music Player");
         frame.setVisible(true);
