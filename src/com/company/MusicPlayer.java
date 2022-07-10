@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-import static com.company.Song.chooseFrame;
 
 public class MusicPlayer implements ActionListener {
 
@@ -171,19 +170,18 @@ public class MusicPlayer implements ActionListener {
             }
         }
         if (e.getSource().equals(pause)) {
-            //code for pause button
             if (player != null && filename != null) {
                 try {
                     pauseLength = fileInputStream.available();
                     player.close();
-                } catch (IOException e1) {
+                }
+                catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }
         }
 
         if (e.getSource().equals(resume)) {
-            //starting resume thread
             if (filename != null) {
                 resumeThread.start();
             } else {
@@ -191,7 +189,6 @@ public class MusicPlayer implements ActionListener {
             }
         }
         if (e.getSource().equals(stop)) {
-            //code for stop button
             if (player != null) {
                 playThread.stop();
                 player.close();
@@ -204,7 +201,6 @@ public class MusicPlayer implements ActionListener {
         @Override
         public void run() {
             try {
-                //code for play button
                 fileInputStream = new FileInputStream(myFile);
                 bufferedInputStream = new BufferedInputStream(fileInputStream);
                 player = new Player(bufferedInputStream);
@@ -221,13 +217,13 @@ public class MusicPlayer implements ActionListener {
         @Override
         public void run() {
             try {
-                //code for resume button
                 fileInputStream = new FileInputStream(myFile);
                 bufferedInputStream = new BufferedInputStream(fileInputStream);
                 player = new Player(bufferedInputStream);
                 fileInputStream.skip(totalLength - pauseLength);
                 player.play();
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }

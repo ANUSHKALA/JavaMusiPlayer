@@ -15,7 +15,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
 import static com.company.MusicPlayer.playChoice;
-import static com.company.PlayingQueue.initUI;
 import static com.company.PlayingQueue.queueUI;
 import static com.company.SongQueue.*;
 //import static com.company.SongQueue.stop;

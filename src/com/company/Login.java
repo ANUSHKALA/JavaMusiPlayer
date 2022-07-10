@@ -77,13 +77,9 @@ class LoginFrame extends JFrame implements ActionListener {
 
     public void addActionEvent() {
 
-
-
         loginButton.addActionListener(this);
         resetButton.addActionListener(this);
         showPassword.addActionListener(this);
-
-
 
     }
 
@@ -91,19 +87,15 @@ class LoginFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
         String line;
         String name;
         String password;
-
 
         while(csvSc.hasNextLine()) {
             line = csvSc.nextLine();
             name = line.split(",")[0];
             password = line.split(",")[1];
             passBook.put(name,password);
-
-
         }
 
         passBook.put("megha","megha");
@@ -145,11 +137,10 @@ class LoginFrame extends JFrame implements ActionListener {
         if (e.getSource() == showPassword) {
             if (showPassword.isSelected()) {
                 passwordField.setEchoChar((char) 0);
-            } else {
+            }
+            else {
                 passwordField.setEchoChar('*');
             }
-
-
         }
     }
 

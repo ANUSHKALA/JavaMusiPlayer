@@ -27,13 +27,21 @@ public class Main {
         frame.add(bPanel, BorderLayout.SOUTH);
         JButton b1 = new JButton("Play a song");
         bPanel.add(b1);
-        bPanel.add(new JButton("Play a playlist"));
+        JButton b2 = new JButton("Play a playlist");
+        bPanel.add(b2);
 
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 MusicPlayer.playChoice();
+            }
+        });
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                Playlist.playListUI();
             }
         });
 

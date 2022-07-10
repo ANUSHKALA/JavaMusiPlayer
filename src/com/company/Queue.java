@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.Scanner;
 
 import static com.company.MusicPlayer.playChoice;
 import static com.company.PlayingQueue.queueUI;
@@ -21,6 +22,7 @@ public class Queue {
     static String selSong = "";
     static JFrame queueFrame;
     static JComboBox<String> queueSelMenu = new JComboBox<>(optionsToChoose);
+    static boolean stopMusic = false;
 
 
     Queue() {
@@ -56,7 +58,6 @@ public class Queue {
                 // mark front denote first element of queue
                 front = 0;
             }
-
             rear++;
             // insert element at the rear
             items[rear] = element;
@@ -88,7 +89,6 @@ public class Queue {
             }
             System.out.println( element + " Deleted");
 
-
             File input_file = new File("songQ.txt");
             File temp_file = new File("songQue.txt");
             BufferedReader my_reader = new BufferedReader(new FileReader(input_file));
@@ -103,7 +103,6 @@ public class Queue {
             my_writer.close();
             my_reader.close();
             boolean is_success = temp_file.renameTo(input_file);
-
 
             return (element);
         }
@@ -128,10 +127,7 @@ public class Queue {
                 else{
                     System.out.println(items[i]);
                 }
-
             }
-
-            // display the rear of the queue
             System.out.println("\nRear index-> " + rear);
         }
     }
@@ -168,12 +164,6 @@ public class Queue {
 //        q.display();
 
     }
-
-    static void playQueue(String track) throws FileNotFoundException, JavaLayerException {
-
-
-    }
-
 
     static void addToQueue(String track) throws IOException {
         track = selectSong();
@@ -256,6 +246,11 @@ public class Queue {
                 queueFrame.dispose();
                 queueUI();
                 try {
+                    PlayingQueue.playQueue();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                try {
                     Queue.display();
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
@@ -264,8 +259,6 @@ public class Queue {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-
-//                        SongQueue.playing();
             }
         });
 
@@ -274,7 +267,6 @@ public class Queue {
             public void actionPerformed(ActionEvent e) {
                 queueFrame.dispose();
                 playChoice();
-
             }
         });
 
@@ -327,15 +319,39 @@ class PlayingQueue{
     static JFrame playQFrame;
     static JLabel playQTrackName = new JLabel("CHOSEN SONG!!");
 
-    static JLabel songName;
+    static Scanner scanQ;
 
-    static JLabel currentSong;
+    static {
+        try {
+            scanQ = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-    static JPanel playerPanel;
-    static JPanel controlPanel;
+    public static void playing(String track){
+        try{
+            FileInputStream fis = new FileInputStream(track);
+            Player playMP3 = new Player(fis);
+            playMP3.play();
 
-    static JButton next;
-    static JButton queueB = new JButton("QUEUE!");
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+            System.out.println("Failed to play the file.");
+        }
+    }
+
+    public static void playQueue() throws IOException {
+        while (!Queue.isEmpty()){
+            String line = Queue.deQueue();
+            playing(line);
+        }
+    }
+
+    public static void nextBM(){
+
+    }
 
     public static void queueUI(){
 
@@ -364,21 +380,11 @@ class PlayingQueue{
         bPanel.add(stopB);
 
 
-
-
         nextB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-//                    playQFrame.dispose();
-//                        System.out.println(selSong);
-//                        try {
-//                            addToQueue(selSong);
-//                            playQueue();
-//                        }
-//                        catch (IOException ex) {
-//                            ex.printStackTrace();
-//                        }
+//
             }
         });
 
@@ -403,8 +409,4 @@ class PlayingQueue{
         });
 
     }
-
-
-
-
 }
