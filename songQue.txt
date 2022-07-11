@@ -14,3 +14,4 @@ src/tracks/YeJoMohhabbatHai.mp3
 src/tracks/NeeleNeeleAmbarPar.mp3
 src/tracks/KhwabHoTumYa.mp3
 src/tracks/NeeleNeeleAmbarPar.mp3
+src/tracks/LikheJoKhatTujhe.mp3
