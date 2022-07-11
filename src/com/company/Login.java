@@ -6,12 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static com.company.MusicPlayer.playChoice;
-
+//UI PART
 class LoginFrame extends JFrame implements ActionListener {
 
     Container container = getContentPane();
