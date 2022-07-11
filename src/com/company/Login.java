@@ -6,12 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+<<<<<<< HEAD
 //UI Part here we make a file called login file which has names and password
 import static com.company.MusicPlayer.playChoice;
 
+=======
+
+//UI PART
+>>>>>>> dad05e62882265edc1008fd3d2c19fac3b78ea60
 class LoginFrame extends JFrame implements ActionListener {
 // login frame is a frame, it has a container, 2 labels, 1 text field, 1 password field, 1 button, 1 check box, these are java x components part of string, string is the user interface we are using
     Container container = getContentPane();
@@ -97,8 +101,13 @@ class LoginFrame extends JFrame implements ActionListener {
             password = line.split(",")[1];
             passBook.put(name,password);
         }
+<<<<<<< HEAD
 // splitting the line by comma, username index 0 and password 1, forms array of these 2 elements 0 is 1st element and 1 is 2nd, name is 1st element and password is 2nd
         passBook.put("megha","megha");
+=======
+
+        passBook.put("vara","vara");
+>>>>>>> dad05e62882265edc1008fd3d2c19fac3b78ea60
         passBook.put("a","a");
         System.out.println(passBook);
 
