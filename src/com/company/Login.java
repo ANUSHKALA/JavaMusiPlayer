@@ -96,7 +96,7 @@ class LoginFrame extends JFrame implements ActionListener {
             passBook.put(name,password);
         }
 
-        passBook.put("megha","megha");
+        passBook.put("vara","vara");
         passBook.put("a","a");
         System.out.println(passBook);
 

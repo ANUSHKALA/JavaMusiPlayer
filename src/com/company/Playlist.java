@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.company.Main.Begin;
 import static com.company.MusicPlayer.playChoice;
 import static com.company.PlayingQueue.queueUI;
 import static com.company.SongQueue.file;
@@ -63,12 +64,8 @@ public class Playlist {
                 }
                 try {
                     Queue.display();
-                } catch (FileNotFoundException ex) {
+                } catch (JavaLayerException | IOException ex) {
                     ex.printStackTrace();
-                } catch (JavaLayerException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
                 }
             }
         });
@@ -77,7 +74,7 @@ public class Playlist {
             @Override
             public void actionPerformed(ActionEvent e) {
                 playlistFrame.dispose();
-                playChoice();
+                Begin();
             }
         });
 

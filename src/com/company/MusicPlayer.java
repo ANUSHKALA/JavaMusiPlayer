@@ -109,7 +109,7 @@ public class MusicPlayer implements ActionListener {
         frame = new JFrame();
 
         //Setting Frame's Title
-        frame.setTitle("Music Player");
+        frame.setTitle("MUSIC PLAYER");
 
         //Adding panels in Frame
         frame.add(playerPanel, BorderLayout.NORTH);
