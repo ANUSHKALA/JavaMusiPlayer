@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 import static com.company.Main.Begin;
 import static com.company.MusicPlayer.playChoice;
@@ -119,9 +120,56 @@ public class Playlist {
 //            }
 //        });
 //    }
+    }
+}
 
+
+class LinkedList {
+
+    static class Node{
+        int data;
+        Node next;
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static Node head = null;
+    public static Node tail = null;
+    public static int size;
+
+    public static void main(String[] args) {
+
+        LinkedList cr = new LinkedList();
 
     }
 
+    public void display() {
 
+        Node latest = head;
+        if(head == null) {
+            System.out.println("The list is empty");
+        }
+        while(latest != null) {
+            System.out.print(latest.data + " ");
+            latest = latest.next;
+        }
+        System.out.println();
+    }
+
+    public static void addNode(int data) {
+        Node newNode = new Node(data);
+
+        if(head == null) {
+            head = newNode;
+            tail = newNode;
+        }
+        else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+        size++;
+    }
 }
